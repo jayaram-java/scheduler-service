@@ -37,7 +37,10 @@ public class CustomerMgmtClient2Impl implements CustomerMgmtClient2 {
 
 			logger.debug("Sending auth request to URL: {}", loginUrl);
 
-			LoginResponse response = restClient.post().uri(loginUrl).body(loginRequest).retrieve()
+			LoginResponse response = restClient.post()
+					.uri(loginUrl)
+					.body(loginRequest)
+					.retrieve()
 					.body(LoginResponse.class);
 
 			if (response == null) {
@@ -80,8 +83,12 @@ public class CustomerMgmtClient2Impl implements CustomerMgmtClient2 {
 
 		try {
 
-			String response = restClient.get().uri(url, accountId)
-					.headers(headers -> headers.addAll(createAuthHeaders())).retrieve().body(String.class);
+			String response = restClient
+					.get()
+					.uri(url, accountId)
+					.headers(headers -> headers.addAll(createAuthHeaders()))
+					.retrieve()
+					.body(String.class);
 
 			logger.info("Transactions fetched successfully for accountId: {}", accountId);
 
